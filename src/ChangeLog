@@ -1,0 +1,263 @@
+2012-01-20 Harri Pitkänen <hatapitk@iki.fi>
+	* Fix build with MSVC 2005.
+	* Update license texts for standalone extension.
+
+2012-01-19 Harri Pitkänen <hatapitk@iki.fi>
+	* Add links to extended grammar checker help.
+
+2012-01-02 Harri Pitkänen <hatapitk@iki.fi>
+	* Avoid double delete of component objects.
+
+2011-02-17 Tarja Lindfors <tarja@puimula.org>
+
+	* New icon.
+
+2011-02-16 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Specify English as the fallback language for settings dialog.
+
+2011-02-05 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Rename source package to libreoffice-voikko.
+	* Add new codes to language mapping table.
+	* Remove -Werror from compiler flags, STLPort (used on 32 bit Linux)
+	  headers contain code that triggers warnings with recent GCC.
+
+2011-02-01 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Remove %origin% expansion trick from configuration, it has been unused
+	  since version 3.0.
+	* Document that the extension now targets primarily LibreOffice.
+
+2010-12-22 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add support for spell checking multiple languages.
+
+2010-07-27 David Tardon
+
+	* Fix broken config.xcu to work with stricter validation in OOo 3.3.
+
+2010-05-31 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Switch to new libvoikko 3.0 API (Trac #11).
+	* Ignoring grammar checker rules works (Trac #12).
+
+2010-05-07 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add license attribute that allows suppressing the license dialog with
+	  unopkg --suppress-license.
+
+2010-04-23 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Remove references to malaga and glib libraries for Windows and OS X.
+	* Increase version number to 3.1.1.
+
+2010-01-05 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Fix error handling for cases where configuration is somehow damaged.
+	  Partially fixes SF.net bug #2919454.
+
+2009-10-26 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Reduce scope of a variable to fix cppcheck warning.
+
+2009-10-04 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Re-enable grammar checker on Windows, since it works when libvoikko
+	  has been built with MSVC.
+	* Document the fact that MSVC should be used for building libvoikko on
+	  Windows. Change the build system so that libvoikko-1.def -> libvoikko-1.lib
+	  conversion is no longer done, because MSVC creates libvoikko-1.lib automatically.
+	* Allow copying entire directories when creating standalone extensions. Update
+	  the names of files to be copied for libvoikko 2.2.
+
+2009-07-27 Petr Mladek
+
+	* Change order of linker flags on Linux to enable building with
+	  -Wl,--as-needed.
+
+2009-05-15 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Replace the icon with something less irritating and add
+	  svg version.
+
+2009-04-11 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Implement listing of available dictionaries in standalone
+	  extensions.
+
+2009-04-05 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Print debug info to stderr instead of stdout to avoid
+	  buffering.
+
+2009-03-15 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Enable VOIKKO_OPT_ACCEPT_BULLETED_LISTS_IN_GC to silence
+	  false positives in bulleted lists.
+
+2009-03-15 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Disable grammar checker on Windows, it does not work.
+
+2009-03-11 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Read dictionary variant from registry on startup.
+
+2009-03-06 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Fall back to default dictionary if specified variant is
+	  not available.
+	* Show more ugly warnings when SHOW_UGLY_WARNINGS=1.
+
+2009-02-15 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Allow changing dictionary variant in settings.
+
+2009-02-14 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Turn PropertyManager into a proper singleton.
+
+2009-01-31 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Turn SpellChecker, Hyphenator and GrammarChecker into
+	  singletons.
+
+2009-01-04 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add option for preventing hyphenation of unknown
+	  or foreign words.
+
+2008-12-29 Harri Pitkänen <hatapitk@iki.fi>
+
+	 * Adapt to grammar checking framework API changes in
+	   OOo 3.0.1.
+
+2008-10-12 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Use VOIKKO_OPT_ACCEPT_UNFINISHED_PARAGRAPHS_IN_GC from
+	  libvoikko 2.1.
+	* Enable grammar checker by default.
+	* Increase version number to 3.1.
+
+2008-08-23 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Detect UI language and use that to offer grammar error
+	  explanations in correct language.
+
+2008-08-16 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add grammar checker implementation.
+
+2008-08-10 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Adapt to SDK changes on Windows.
+
+2008-08-09 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Adapt to SDK changes on OS X.
+
+2008-07-25 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Adapt to DEV300_m26.
+
+2008-07-21 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add setting (checkbox) for compound word hyphenation and
+	  store the value to the registry.
+	* Use new compound word hyphenation setting when hyphenating.
+	* Add build option SHOW_UGLY_WARNINGS to be used in binary
+	  test builds.
+
+2008-07-19 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add settings dialog.
+	* Add build option for disabling the grammar checker.
+
+2008-07-18 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add icon and publisher information for new extension manager.
+
+2008-07-10 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Build fixes, thanks to Caolan McNamara from RedHat.
+
+2008-03-30 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add stub for grammar checker implementation.
+	* Documentation fixes.
+
+2008-03-24 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Respect HyphMinLeading and HyphMinTrailing in
+	  Hyphenator::createPossibleHyphens.
+
+2008-03-23 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Update license to GPL v3 or later.
+	* Update extension version and required OOo version for
+	  openoffice.org-voikko 3.0 and OOo 3.0.
+	* Use PackageInformationProvider to get the extension installation
+	  path.
+	* Use thread unsafe UNO purpose environment.
+
+2008-01-23 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add Makefile targets 'extension-files', 'oxt' and
+	  'install-unpacked'. 'extension-files' is the new default,
+	  'all' refers to 'oxt'.
+
+2008-01-22 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Use locale encoding with file names.
+	* Add displayname to description.xml for OOo 2.4.
+
+2008-01-19 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Standalone extension support for OS X 10.5.
+	* Update README.
+
+2008-01-18 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Makefile support for OS X 10.5 (Intel).
+
+2007-11-17 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add magic key "VoikkoGetStatusInformation" for
+	  obtaining diagnostics from production builds.
+	* Increase version number to 2.2.
+
+2007-08-19 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Update README
+	* Makefile cleanup
+
+2007-06-19 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Adapt for libvoikko 1.5
+	* Increase version number to 2.1
+	* Use private vocabulary files when building as
+	  standalone extension
+	* Add support for displaying license text upon
+	  extension installation (not enabled by default)
+
+2007-06-14 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Add support for building on Windows with Microsoft
+	  Visual C++ 2005 Express Edition
+	* Fix some warnings generated by MSVC
+
+2007-05-12 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Return immediately from Hyphenator::hyphenate and
+	  Hyphenator::createPossibleHyphens if initialization has
+	  not been done.
+
+2007-05-07 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Do not hyphenate at '
+	* Increase version number to 2.0.1
+
+2007-04-19 Harri Pitkänen <hatapitk@iki.fi>
+
+	* Initial ChangeLog entry for version 2.0rc1
