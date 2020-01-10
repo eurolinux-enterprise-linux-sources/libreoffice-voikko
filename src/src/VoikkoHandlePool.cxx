@@ -1,5 +1,5 @@
 /* Libreoffice-voikko: Finnish linguistic extension for LibreOffice
- * Copyright (C) 2010 - 2011 Harri Pitkänen <hatapitk@iki.fi>
+ * Copyright (C) 2010 - 2012 Harri Pitkänen <hatapitk@iki.fi>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -103,19 +103,27 @@ static Bcp47ToOOoMapping const bcpToOOoMapping[] = {
 	{"is", "is", "IS"},
 	{"it", "it", "CH"},
 	{"it", "it", "IT"},
+	{"kca", "kca", "RU"},
 	{"kl", "kl", "GL"},
+	{"koi", "koi", "RU"},
+	{"kpv", "kpv", "RU"},
 	{"ku", "ku", "TR"},
 	{"ku", "ku", "SY"},
 	{"la", "la", "VA"},
 	{"ln", "ln", "CD"},
 	{"lt", "lt", "LT"},
+	{"mdf", "mdf", "RU"},
+	{"mhr", "mhr", "RU"},
 	{"mk", "mk", "MK"},
 	{"ml", "ml", "IN"},
+	{"mrj", "mrj", "RU"},
 	{"ms", "ms", ""},
 	{"ms", "ms", "BN"},
 	{"ms", "ms", "MY"},
+	{"myv", "myv", "RU"},
 	{"ne", "ne", "IN"},
 	{"ne", "ne", "NP"},
+	{"nio", "nio", "RU"},
 	{"nl", "nl", "BE"},
 	{"nl", "nl", "NL"},
 	{"nr", "nr", "ZA"},
@@ -123,9 +131,13 @@ static Bcp47ToOOoMapping const bcpToOOoMapping[] = {
 	{"nso", "nso", "ZA"},
 	{"ny", "ny", "MW"},
 	{"oc", "oc", "FR"},
+	{"olo", "olo", "RU"},
 	{"or", "or", "IN"},
 	{"pa", "pa", "IN"},
 	{"pa", "pa", "PK"},
+	{"pap-BQ", "pap", "BQ"},
+	{"pap-CW", "pap", "CW"},
+	{"pjt", "pjt", "AU"},
 	{"pl", "pl", "PL"},
 	{"pt", "pt", "PT"},
 	{"pt-BR", "pt", "BR"},
@@ -139,6 +151,7 @@ static Bcp47ToOOoMapping const bcpToOOoMapping[] = {
 	{"se", "se", "FI"},
 	{"se", "se", "NO"},
 	{"se", "se", "SE"},
+	{"sid", "sid", "ET"},
 	{"sjd", "sjd", "RU"},
 	{"sk", "sk", "SK"},
 	{"sl", "sl", "SI"},
@@ -162,8 +175,11 @@ static Bcp47ToOOoMapping const bcpToOOoMapping[] = {
 	{"tn", "tn", "ZA"},
 	{"ts", "ts", "ZA"},
 	{"uk", "uk", "UA"},
+	{"vep", "vep", "RU"},
 	{"vi", "vi", "VN"},
+	{"vro", "vro", "EE"},
 	{"xh", "xh", "ZA"},
+	{"yrk", "yrk", "RU"},
 	{0, 0, 0}
 };
 
@@ -195,10 +211,10 @@ VoikkoHandle * VoikkoHandlePool::openHandleWithVariant(const OString & language,
 	VoikkoHandle * voikkoHandle = voikkoInit(&errorString, fullVariant.getStr(), getInstallationPath());
 	if (voikkoHandle) {
 		handles[language] = voikkoHandle;
-		for (map<int, bool>::const_iterator it = globalBooleanOptions.begin(); it != globalBooleanOptions.end(); it++) {
+		for (map<int, bool>::const_iterator it = globalBooleanOptions.begin(); it != globalBooleanOptions.end(); ++it) {
 			voikkoSetBooleanOption(voikkoHandle, it->first, it->second ? 1 : 0);
 		}
-		for (map<int, int>::const_iterator it = globalIntegerOptions.begin(); it != globalIntegerOptions.end(); it++) {
+		for (map<int, int>::const_iterator it = globalIntegerOptions.begin(); it != globalIntegerOptions.end(); ++it) {
 			voikkoSetIntegerOption(voikkoHandle, it->first, it->second);
 		}
 		return voikkoHandle;
@@ -232,7 +248,7 @@ VoikkoHandle * VoikkoHandlePool::getHandle(const lang::Locale & locale) {
 }
 
 void VoikkoHandlePool::closeAllHandles() {
-	for (map<OString,VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); it++) {
+	for (map<OString,VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); ++it) {
 		voikkoTerminate(it->second);
 	}
 	handles.clear();
@@ -244,7 +260,7 @@ void VoikkoHandlePool::setGlobalBooleanOption(int option, bool value) {
 		return;
 	}
 	globalBooleanOptions[option] = value;
-	for (map<OString,VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); it++) {
+	for (map<OString,VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); ++it) {
 		voikkoSetBooleanOption(it->second, option, value ? 1 : 0);
 	}
 }
@@ -254,7 +270,7 @@ void VoikkoHandlePool::setGlobalIntegerOption(int option, int value) {
 		return;
 	}
 	globalIntegerOptions[option] = value;
-	for (map<OString,VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); it++) {
+	for (map<OString,VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); ++it) {
 		voikkoSetIntegerOption(it->second, option, value);
 	}
 }
@@ -301,12 +317,12 @@ uno::Sequence<lang::Locale> VoikkoHandlePool::getSupportedGrammarLocales() {
 
 OUString VoikkoHandlePool::getInitializationStatus() {
 	OUString status = A2OU("Init OK:[");
-	for (map<OString, VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); it++) {
+	for (map<OString, VoikkoHandle *>::const_iterator it = handles.begin(); it != handles.end(); ++it) {
 		status += OStringToOUString(it->first, RTL_TEXTENCODING_UTF8) + A2OU(" ");
 	}
 	
 	status += A2OU("] FAILED:[");
-	for (map<OString, const char *>::const_iterator it = initializationErrors.begin(); it != initializationErrors.end(); it++) {
+	for (map<OString, const char *>::const_iterator it = initializationErrors.begin(); it != initializationErrors.end(); ++it) {
 		status += OStringToOUString(it->first, RTL_TEXTENCODING_UTF8) + A2OU(":'") + A2OU(it->second) + A2OU("' ");
 	}
 	status += A2OU("]");

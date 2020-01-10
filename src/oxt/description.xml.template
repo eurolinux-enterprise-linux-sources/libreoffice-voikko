@@ -7,8 +7,8 @@
   <identifier value="org.puimula.ooovoikko" />
 
   <display-name>
-    <name lang="en-US">Voikko - Finnish language tools</name>
-    <name lang="fi">Voikko - suomen kielen kielityökalut</name>
+    <name lang="en-US">Writing aids based on Voikko</name>
+    <name lang="fi">Voikko-pohjaiset kirjoituksen aputyökalut</name>
   </display-name>
 
   <!-- SHOW_LICENSE
@@ -22,7 +22,7 @@
 
   <publisher>
     <name xlink:href="http://voikko.sourceforge.net" lang="fi">Voikon kehittäjäyhteisö</name>
-    <name xlink:href="http://voikko.sourceforge.net" lang="en">Voikko developement community</name>
+    <name xlink:href="http://voikko.sourceforge.net" lang="en">Voikko development community</name>
   </publisher>
 
   <icon>

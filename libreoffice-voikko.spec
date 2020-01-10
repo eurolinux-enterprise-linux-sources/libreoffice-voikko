@@ -1,6 +1,6 @@
 Name:           libreoffice-voikko
-Version:        3.3
-Release:        3%{?dist}
+Version:        3.4
+Release:        4%{?dist}
 Summary:        Finnish spellchecker and hyphenator extension for LibreOffice
 
 Group:          Applications/Productivity
@@ -12,7 +12,7 @@ Source0:        http://downloads.sourceforge.net/voikko/%{name}-%{version}.tar.g
 #Source0:        http://www.puimula.org/htp/testing/%{name}-%{version}rc2.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%global libo_version 3.5
+%global libo_version 4.0
 %global libo %{_libdir}/libreoffice
 %global libo_sdk %{libo}/sdk
 
@@ -35,7 +35,7 @@ provided by the Voikko library.
 
 %prep
 %setup -q
-
+sed -i 's|-BUCR||g' Makefile
 
 %build
 . %{libo_sdk}/setsdkenv_unix.sh
@@ -64,6 +64,19 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 3.4-4
+- Mass rebuild 2014-01-24
+
+* Wed Jan 08 2014 Caolán McNamara <caolanm@redhat.com> - 3.4-3
+- Resolves: rhbz#1048874 fix FTBFS
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 3.4-2
+- Mass rebuild 2013-12-27
+
+* Sun Apr 14 2013 Ville-Pekka Vainio <vpvainio AT iki.fi> - 3.4-1
+- New upstream release
+- Rebuilt for LibreOffice 4.0
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.3-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
@@ -163,10 +176,10 @@ rm -rf $RPM_BUILD_ROOT
 - add --force to protect against installing by rpm an extension which was
   previously installed manually
 
-* Sun Aug 28 2008 Ville-Pekka Vainio <vpivaini AT cs.helsinki.fi> - 3.0-1
+* Thu Aug 28 2008 Ville-Pekka Vainio <vpivaini AT cs.helsinki.fi> - 3.0-1
 - openoffice.org-voikko 3.0
 
-* Sun Jul 30 2008 Ville-Pekka Vainio <vpivaini AT cs.helsinki.fi> - 3.0-0.2.rc1
+* Wed Jul 30 2008 Ville-Pekka Vainio <vpivaini AT cs.helsinki.fi> - 3.0-0.2.rc1
 - New release candidate:
   - Require libvoikko >= 2.0
   - Don't build with SHOW_UGLY_WARNINGS anymore
